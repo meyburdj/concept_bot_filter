@@ -1,0 +1,66 @@
+###########
+# BUILDER #
+###########
+
+# pull official base image
+FROM python:3.12.0-slim-bookworm as builder
+
+# set working directory
+WORKDIR /usr/src/app
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV FLASK_ENV production
+ENV PATH /home/root/.local/bin:${PATH}
+
+# install system dependencies
+RUN apt-get update \
+  && apt-get -y install netcat gcc \
+  && apt-get clean
+
+# install dependencies
+RUN pip install --upgrade pip
+COPY ./requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+
+
+#########
+# FINAL #
+#########
+
+# pull official base image
+FROM python:3.12.0-slim-bookworm
+
+# create directory for the app user
+RUN mkdir -p /home/app
+
+# create the app user
+RUN adduser --disabled-password --gecos '' --home /home/app app
+
+# set work directory
+WORKDIR /home/app
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV FLASK_ENV production
+ENV APP_SETTINGS src.config.ProductionConfig
+
+# install dependencies
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder /usr/src/app/requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install --no-cache /wheels/*
+
+# copy project
+COPY . .
+
+# chown all the files to the app user
+RUN chown -R app:app /home/app
+
+# change to the app user
+USER app
+
+# run gunicorn
+CMD gunicorn --workers 4 --threads 4 --bind 0.0.0.0:$PORT --timeout 660 manage:app

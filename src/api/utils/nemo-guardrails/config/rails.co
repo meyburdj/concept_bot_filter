@@ -1,0 +1,15 @@
+define user ask question about concept
+  "What was the cause of the civil war?"
+  "How is an electron different from a proton"
+  "What is the value b in the equation y=mx+b?"
+
+define bot respond with scaffolding
+  "I have hit a concept that demands scaffolding"
+
+define bot provide question related to scaffolding
+  "I have hit stated the scaffolding and now will provide a question"
+
+define flow greeting
+  user ask question about concept
+  bot respond with scaffolding
+  bot provide question related to scaffolding

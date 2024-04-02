@@ -1,15 +1,35 @@
-define user ask question about concept
-  "What was the cause of the civil war?"
-  "How is an electron different from a proton"
-  "What is the value b in the equation y=mx+b?"
+define user express greeting
+    "hello"
+    "hi"
+    "what's up?"
 
-define bot respond with scaffolding
-  "I have hit a concept that demands scaffolding"
+define user ask for help
+    "can you help me?"
+    "I need assistance"
+    "could you provide some information?"
 
-define bot provide question related to scaffolding
-  "I have hit stated the scaffolding and now will provide a question"
+define bot express greeting
+    "Hello! How can I assist you today?"
 
-define flow greeting
-  user ask question about concept
-  bot respond with scaffolding
-  bot provide question related to scaffolding
+define bot offer help
+    "Sure! What do you need help with?"
+
+define flow greeting_flow
+    user express greeting
+    bot express greeting
+
+define flow help_flow
+    user ask for help
+    bot offer help
+
+define user ask sensitive
+    "what are your political beliefs?"
+    "tell me a joke about religion"
+    "do you have any gossip?"
+
+define bot avoid sensitive
+    "I'm here to provide help with your queries. Let’s stick to informational topics."
+
+define flow avoid_sensitive_flow
+    user ask sensitive
+    bot avoid sensitive

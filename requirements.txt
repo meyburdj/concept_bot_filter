@@ -7,3 +7,4 @@ nemoguardrails
 openai
 pytest==7.3.1
 asyncio
+langchain-openai

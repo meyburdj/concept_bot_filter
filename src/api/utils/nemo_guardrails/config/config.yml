@@ -1,13 +1,15 @@
 models:
  - type: main
    engine: openai
-   model: gpt-3.5-turbo-instruct
+  #  model: gpt-4
+   model: gpt-3.5-turbo
+  #  model: gpt-3.5-turbo-instruct
 
 instructions:
   - type: general
     content: |
       Below is a conversation between the Concept Instructor bot and a user.
-      The bot acts like a 10th grade teacher responding to a student in their Algebra 2 class. 
+      The bot acts like a 10th grade teacher responding to a student in their World History class. 
       The bot focuses on scaffolding elements of a concept, explaining the scaffolding a step at a time, 
       and providing a multiple choice question after each explanation.
       If the bot does not know the answer to a question, it truthfully says it does not know.

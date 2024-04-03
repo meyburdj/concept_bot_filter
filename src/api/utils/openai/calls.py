@@ -1,36 +1,37 @@
-from openai import OpenAI
+import openai
 from src.api.utils.openai.config import get_openai_key
 from src.api.utils.openai.prompts import scaffold_response_response, continue_conversation_prompt
 
 
-async def scaffold_response_call( messages, grade_level, academic_topic):
+def scaffold_response_call( messages, grade_level, academic_topic):
     """ Takes in a question. Returns an outline scaffolding the concepts building
      to the concepet's answer."""
 
     api_key = get_openai_key()
-    client = OpenAI(api_key)
+    openai.api_key = api_key
 
-    updated_messages = scaffold_response_response(messages, grade_level, academic_topic)
+    new_message = scaffold_response_response(messages, grade_level, academic_topic)
 
-    chat_completion = client.chat.completions.create(
-        messages=updated_messages,
-        model="gpt-3.5-turbo",
+    chat_completion = openai.chat.completions.create(
+        messages=messages + [new_message],
+        model="gpt-4-0125-preview",
     )
 
-    return chat_completion
+    return chat_completion.choices[0].message.content
 
-async def continue_conversation_prompt(messages):
+def continue_conversation_call(messages):
     """ Takes in a question. Returns an outline scaffolding the concepts building
      to the concepet's answer."""
 
     api_key = get_openai_key()
-    client = OpenAI(api_key)
+    openai.api_key = api_key
 
-    updated_messages = scaffold_response_response(messages)
+    new_message = continue_conversation_prompt(messages)
+    print("here's the new_message :", new_message)
 
-    chat_completion = client.chat.completions.create(
-        messages=updated_messages,
-        model="gpt-3.5-turbo",
+    chat_completion = openai.chat.completions.create(
+        messages=messages + [new_message],
+        model="gpt-4-0125-preview",
     )
 
-    return chat_completion
+    return chat_completion.choices[-1].message.content

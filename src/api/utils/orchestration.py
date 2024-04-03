@@ -1,11 +1,14 @@
-from src.api.utils.openai.calls import scaffold_response_call, continue_conversation_prompt
+from src.api.utils.openai.calls import scaffold_response_call, continue_conversation_call
 
-async def orchestrate_chatbot_pipeline(messages, grade_level, academic_topic):
+def orchestrate_chatbot_pipeline(messages, grade_level, academic_topic):
     """Orchestrates flow of data across prompts and calls."""
     
+    print("messages[0]['role']: ", messages[0]["role"])
     if len(messages) == 1 and messages[0]["role"] == "user":
-        response = await scaffold_response_call(messages=messages, grade_level=grade_level, academic_topic=academic_topic)
+        print("scaffold_response_call")
+        response = scaffold_response_call(messages=messages, grade_level=grade_level, academic_topic=academic_topic)
     else:
-        response = await continue_conversation_prompt(messages=messages)
+        print("i'm about to do continue_conversation_prompt")
+        response = continue_conversation_call(messages=messages)
 
     return response

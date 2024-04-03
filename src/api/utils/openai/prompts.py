@@ -2,7 +2,7 @@ from openai import OpenAI
 from src.api.utils.openai.config import get_openai_key
 
 
-async def scaffold_response_response( messages, grade_level, academic_topic):
+def scaffold_response_response( messages, grade_level, academic_topic):
     """ Takes in a question. Returns an outline scaffolding the concepts building
      to the concepet's answer."""
 
@@ -56,10 +56,10 @@ async def scaffold_response_response( messages, grade_level, academic_topic):
     </student's question>
     """
     )
-    return {"role": "user", "content": user_content}
+    return {"role": "user", "content": content}
 
-async def continue_conversation_prompt( messages, grade_level, academic_topic):
+def continue_conversation_prompt( messages):
     """ Takes in messages. Returns messages array with user's content appended"""
 
-    user_content = messages[0]['content']
-    return {"role": "user", "content": user_content}
+    content = messages[-1]['content']
+    return {"role": "user", "content": content}

@@ -10,5 +10,6 @@ message_model = filters_namespace.model('Message', {
 messages_model = filters_namespace.model('MessagesPost', {
     'gradeLevel': fields.String(required=True, description='The role of the message sender will be assistant or user'),
     'academicTopic': fields.String(required=True, description='The role of the message sender will be assistant or user'),
-    'messages': fields.List(fields.Nested(message_model), required=True, description='List of messages'),
+    'clientMessages': fields.List(fields.Nested(message_model), required=True, description='List of messages'),
+    'promptMessages': fields.List(fields.Nested(message_model), required=True, description='List of messages'),
 })

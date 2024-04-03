@@ -112,8 +112,8 @@ Example of text allowing guardrails to fail<br>
 
 Adding examples to the prompt is a powerful way to make the response more deterministic 
 and better fulfill goals. However, when the example is on a topic too far from the question
-it can give a worse result. These problems are easily solved when knowing the academic topics that a student may enter, or when using text classification to identify the topic. By doing so, one could append the correct example.
-[What was the influence of WW1 on WW2 with example](https://chat.openai.com/share/7b3aa615-c3ca-4aad-b84f-98be15676522)
+it can give a worse result. These problems are easily solved when knowing the academic topics that a student may enter, or when using text classification to identify the topic. By doing so, one could append the correct example.<br>
+[What was the influence of WW1 on WW2 with example](https://chat.openai.com/share/7b3aa615-c3ca-4aad-b84f-98be15676522)<br>
 [How does B influence linear equations in the real world?(with example)](https://chat.openai.com/share/21a82bd8-0b57-4b97-bb94-dcb7e83f5101)
 
 ### Use of api

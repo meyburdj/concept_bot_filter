@@ -91,13 +91,13 @@ If a student asks a question rooted in fact within the teacher’s domain, the
 bot responds as intended. This is true whether the student supplies correct answers,
 incorrect answers, or asks qualifying questions
 
-Examples of happy paths: [What was the influence of World War one on World War Two?](https://chat.openai.com/share/9d3c6c2b-aa8d-4738-88ce-398f77b14841), 
-[How does B influence linear equations in the real world?](https://chat.openai.com/share/7046a747-d1f8-438b-8da2-240700c35208)
+Examples of happy paths:<br> [What was the influence of World War one on World War Two?](https://chat.openai.com/share/9d3c6c2b-aa8d-4738-88ce-398f77b14841),<br> 
+[How does B influence linear equations in the real world?](https://chat.openai.com/share/7046a747-d1f8-438b-8da2-240700c35208),<br>
 7th Grade Literature
 
 It also adheres to guardrails early in the conversational context, avoiding hallucinations and prompt ignoring/reprogramming.
 
-Examples of hallucination avoidance: [“What was Abraham Lincoln’s favorite flavor of skittle?” ](https://chat.openai.com/share/ec390fa0-e93a-4e83-b461-bdc4907d291a)
+Examples of hallucination avoidance:<br> [“What was Abraham Lincoln’s favorite flavor of skittle?” ](https://chat.openai.com/share/ec390fa0-e93a-4e83-b461-bdc4907d291a)
 
 Additionally, the prompt is good at avoiding hallucinations early in the conversational context involving questions around people–a common area for hallucinations.<br>
 Example: [What was the role of Thomas the stark in the migration of Danish vikings?](https://chat.openai.com/share/f53a902a-eb5c-48ce-8251-16ab97e86eef)

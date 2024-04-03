@@ -1,6 +1,20 @@
-# Chat Filter Application for Educational Chatbots
+## Chat Filter Application for Educational Chatbots
 
-## Raw Prompt for ChatGPT
+# Pedagological Approach
+
+AI-chatbots aimed at education must be rooted in proven pedagogy. For the sake of this project,
+I have enlisted the educatoinal strategy of scaffolding as a means of instructing a student
+who may be struggling on mastery of a concept. In both the initial chatgpt prompt, and the 
+chat filter architecture, the goal is to direct the ai responses to breakdown the question into component concepts, instruct on the first concept, assess for mastery of that concept and reinforce or continue depending on the student’s response. 
+
+# Chatgpt Prompt
+
+I started with a single chatgpt prompt. Making use of xml, I focused on directing it to follow
+the scaffolding method discussed above. An instructor making use of this prompt wold have to fill
+in their student's grade level and academic topic. In this example prompt I have used
+10th grade and World History to reinforce the tone and context for the ultimate student
+question. Input and output guardrails have been included in the prompt to maintain
+the integrety of the context and create a safer chatbot experience.
 
 To see the raw prompt without artificial linebreaks see [raw_prompt.txt](https://github.com/meyburdj/concept_bot_nemo/blob/main/raw_prompt.txt) 
 
@@ -63,9 +77,8 @@ school's policy for how teachers interact with students:
 What was the influence of World War one on World War Two?
 </student's question>
 ```
-This prompt makes use of the educational strategy of scaffolding to direct the ai responses to breakdown the question into component concepts, instruct on the first concept, assess for mastery of that concept and reinforce or continue depending on the student’s response. 
 
-It handles happy conversational pathways quite well. If a student asks a question rooted in fact within the teacher’s domain, the teacher responds as intended.
+The raw chatGPT prompt handles happy conversational pathways quite well. If a student asks a question rooted in fact within the teacher’s domain, the teacher responds as intended.
 
 Examples of happy paths:
 World History

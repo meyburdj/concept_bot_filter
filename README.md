@@ -1,9 +1,9 @@
 # Chat Filter Application for Educational Chatbots
 
-## Pedagological Approach
+## Pedagogical Approach
 
 AI-chatbots aimed at education must be rooted in proven pedagogy. For the sake of 
-this project, I have enlisted the educatoinal strategy of scaffolding as a means 
+this project, I have enlisted the educational strategy of scaffolding as a means 
 of instructing a student who may be struggling on mastery of a concept. For 
 information on scaffolding and its impact in online education, see 
 [here](https://files.eric.ed.gov/fulltext/EJ1267049.pdf). In both the initial 
@@ -22,7 +22,7 @@ in their student's grade level and academic topic. This example prompt makes use
 10th grade and World History to reinforce the tone and context for the ultimate student
 question. It has been tested against a wide range of grades, academic topics, 
 and associated questions. Input and output guardrails have been included in the prompt to maintain
-the integrety of the context and create a safer chatbot experience.
+the integrity of the context and create a safer chatbot experience.
 
 To see the raw prompt without artificial linebreaks see [raw_prompt.txt](https://github.com/meyburdj/concept_bot_nemo/blob/main/raw_prompt.txt) 
 
@@ -36,8 +36,7 @@ If they have not mastered the concept you continue to explain and then provide
 another multiple choice question. If they answer the question correctly you move 
 on to the next scaffolding concept and next multiple choice question. This 
 continues until you reach the end of the sequence of concepts and the student 
-has answered the final multiple choice question. The amount of concepts scaffolded 
-should be between 3 and 6.
+has answered the final multiple choice question.
 </context>
 
 <objective>
@@ -82,57 +81,6 @@ school's policy for how teachers interact with students:
       - if a message is not related to a factual statement, you should ask for a concept related to fact.
 </guardrails for teacher>
 
-<example teacher response>
-To fully understand the influence of the French on Creole cooking, we'll explore 
-several key concepts, each building upon the last. Here's an outline of the 
-concepts we'll discuss:
-<concept 1> Creole Culture and Origins: A comprehensive understanding of Creole 
-culture, focusing on its emergence from the interaction of French, Spanish, 
-African, and Native American influences.</concept 1>
-<concept 2>French Colonial Influence: An examination of the French colonial era, 
-highlighting how French policies, practices, and settlers shaped local cultures, 
-particularly in regions like the Caribbean and Louisiana.</concept 2>
-<concept 3>African and Native American Contributions: Insight into how African 
-and Native American traditions have interwoven with French influences to create 
-unique aspects of Creole culture, especially in culinary practices.<concept 3>
-<concept 4>Culinary Fusion: A look at how Creole cuisine represents a fusion of 
-various culinary traditions, with a specific focus on French cooking techniques, 
-ingredients, and dishes that have been adapted and transformed within Creole 
-cooking.</concept 4>
-<concept 5>Creole Cooking Techniques and Ingredients: An exploration of specific 
-cooking techniques and ingredients that are characteristic of Creole cuisine, 
-identifying which aspects can be traced back to French culinary traditions.</concept 5>
-<concept 6>Modern Creole Cuisine: An understanding of how Creole cuisine continues 
-to evolve, incorporating modern influences while retaining its French-inspired 
-roots.</concept 6>
-First, we will discuss Creole Culture and Origins:
-Creole culture represents a rich tapestry of influences woven together through 
-centuries of history, marked by the intermingling of peoples from different 
-continents. Originating primarily in colonial regions of the Americas and the 
-Caribbean, Creole culture embodies a fusion of elements from French, Spanish, 
-African, and Native American heritages, among others. This blending occurred as 
-European powers colonized these areas, bringing with them enslaved Africans, 
-interacting with indigenous populations, and in some places, incorporating a 
-flow of migrants from other parts of the world.
-The essence of Creole culture is its diversity and adaptability, reflecting the 
-realities of living in close quarters among vastly different communities. In 
-places like New Orleans, Louisiana, this cultural amalgamation is particularly 
-evident in the architecture, language, music, and, notably, in the cuisine, 
-which borrows spices, techniques, and ingredients from its multifaceted roots. 
-The French influence in Creole culture is pronounced due to the significant period 
-of French colonial rule in many of these areas, which left a lasting imprint on 
-the social, linguistic, and culinary practices of the Creole people.
-Question 1 Revised: Which of the following statements best captures the essence of Creole culture?
-A) A culture that emerged from a single, homogeneous group with little external influence.
-B) A culture that has evolved in the 21st century, incorporating modern global influences.
-C) A culture that is characterized by the blending of French, Spanish, African, 
-and Native American traditions, reflecting centuries of colonization, migration, 
-and interaction between diverse groups.
-D) A culture that primarily reflects the traditions of indigenous peoples of the 
-Americas with minimal influence from European colonization.
-Please select the correct option or ask any clarifying questions.
-</example teacher response>
-
 <student's question>
 What was the influence of World War one on World War Two?
 </student's question>
@@ -168,14 +116,24 @@ Examples of user inputs removing guardrails:<br>
 
 The chatbot’s ability to apply input/output guardrails will continue to diminish as conversational context expands. Adding ~1k tokens worth of text and then reprogramming the prompt works consistently:
 
+Adding examples to the prompt is a powerful way to make the response more deterministic 
+and better fulfill goals. However, when the example is on a topic too far from the question
+it can give a worse result. These problems are easily solved when knowing the academic topics that a student may enter, or when using text classification to identify the topic. By doing so, one could append the correct example.
+[What was the influence of WW1 on WW2 with example](https://chat.openai.com/share/7b3aa615-c3ca-4aad-b84f-98be15676522)
+[How does B influence linear equations in the real world?(with example)](https://chat.openai.com/share/21a82bd8-0b57-4b97-bb94-dcb7e83f5101)
+
 ### Use of api
 
-Some of these problems can be ameliorated with the use of the API simply by moving the moderation guardrails into the system prompt. Other techniques for imrpoving the prompt involve appending the equivelent of a system prompt to the top of each new api call while removing it from the previous prompts. Depending on the gpt model use of the system prompt or manually appending to the most recent call can be more effective at ensuring the next response has immediate access to conversational context. 
+Some of these problems can be ameliorated with the use of the API simply by moving the moderation guardrails into the system prompt. Other techniques for improving the prompt involve appending the equivalent of a system prompt to the top of each new api call while removing it from the previous prompts. Depending on the gpt model use of the system prompt or manually appending to the most recent call can be more effective at ensuring the next response has immediate access to conversational context. 
 
-To make the chatbot more deterministic, safe, and testable, one can make a more elaborate prompt pipeline. By programatically adjusting the prompt, checking input/output guardrails against smaller LLMs such as llama guard, and specifying types of utterances, one can more finely direct the correct prompt mid conversation.  
+To make the chatbot more deterministic, safe, and testable, one can make a more elaborate prompt pipeline. By programmatically  adjusting the prompt, checking input/output guardrails against smaller LLMs such as llama guard, and specifying types of utterances, one can more finely direct the correct prompt mid conversation.  
 
-## Diagram of programatic chat bot
+## Diagram of programmatic  chat bot
 
 ![scaffolding education bot diagram](edu_chatbot_diagram.jpg)
 
-The chatbot filter in this repo aims to prototype a version of this diagram. The frontend ui is forked and heavily modified from [Chatbot UI Lite](https://github.com/meyburdj/chatbot-ui-lite). Both the backend filter and the frontend ui are hosted on railway. The chatbot can be accessed at [here](https://chatbot-ui-lite-production.up.railway.app/)
+The chatbot filter in this repo aims to prototype a version of this diagram. The frontend ui is forked and heavily modified from [Chatbot UI Lite](https://github.com/meyburdj/chatbot-ui-lite). Both the backend filter and the frontend ui are hosted on railway. The chatbot can be accessed at [here](https://chatbot-ui-lite-production.up.railway.app/). 
+
+## TODOS
+
+The filter is setup to orchestrate dynamic llm calls. Creating a large pool of academic topics would allow for the creation of examples that could be more catered to the particular student's question. Having knowledge bases for the different categories of topic would also allow for the use of conversational guardrails that lead the conversation more deterministically. 

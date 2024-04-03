@@ -36,7 +36,6 @@ def continue_conversation_call(client_messages, prompt_messages):
 
     new_prompt_message = continue_conversation_prompt(client_messages)
     prompt_messages = prompt_messages + [new_prompt_message]
-    print("here's the new_prompt_message :", new_prompt_message)
 
     chat_completion = openai.chat.completions.create(
         messages=prompt_messages,

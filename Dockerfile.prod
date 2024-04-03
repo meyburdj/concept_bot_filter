@@ -30,4 +30,4 @@ RUN adduser --disabled-password --gecos '' myuser
 USER myuser
 
 # run gunicorn
-CMD gunicorn --workers 8 --threads 5 --bind 0.0.0.0:$PORT --timeout 60 manage:app
+CMD gunicorn --workers 4 --threads 4 --bind 0.0.0.0:$PORT --timeout 60 manage:app

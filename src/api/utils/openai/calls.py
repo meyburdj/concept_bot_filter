@@ -14,7 +14,7 @@ def scaffold_response_call( messages, grade_level, academic_topic):
 
     chat_completion = openai.chat.completions.create(
         messages=messages + [new_message],
-        model="gpt-3.5-turbo-instruct",
+        model="gpt-3.5-turbo",
         # model="gpt-4-0125-preview",
     )
 
@@ -32,7 +32,7 @@ def continue_conversation_call(messages):
 
     chat_completion = openai.chat.completions.create(
         messages=messages + [new_message],
-        model="gpt-3.5-turbo-instruct",
+        model="gpt-3.5-turbo",
         # model="gpt-4-0125-preview",
     )
 

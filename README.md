@@ -1,13 +1,13 @@
-## Chat Filter Application for Educational Chatbots
+# Chat Filter Application for Educational Chatbots
 
-# Pedagological Approach
+## Pedagological Approach
 
 AI-chatbots aimed at education must be rooted in proven pedagogy. For the sake of this project,
 I have enlisted the educatoinal strategy of scaffolding as a means of instructing a student
 who may be struggling on mastery of a concept. In both the initial chatgpt prompt, and the 
 chat filter architecture, the goal is to direct the ai responses to breakdown the question into component concepts, instruct on the first concept, assess for mastery of that concept and reinforce or continue depending on the student’s response. 
 
-# Chatgpt Prompt
+## Chatgpt Prompt
 
 I started with a single chatgpt prompt. Making use of xml, I focused on directing it to follow
 the scaffolding method discussed above. An instructor making use of this prompt wold have to fill

@@ -2,7 +2,7 @@ from openai import OpenAI
 from src.api.utils.openai.config import get_openai_key
 
 
-def scaffold_response_response( messages, grade_level, academic_topic):
+def scaffold_response_prompt( messages, grade_level, academic_topic):
     """ Takes in a question. Returns an outline scaffolding the concepts building
      to the concepet's answer."""
 

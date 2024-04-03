@@ -10,6 +10,11 @@ from src.api.utils.nemo_guardrails.config.config import process_input_with_guard
 class Filter(Resource):
     @filters_namespace.expect(messages_model, validate=True)
     def post(self):
+        """
+        Receives list of messages and context (grade level, academic topic). 
+        Orchestrates processing of chat conversation, returning the resulting
+        message. 
+        """
         post_data = request.get_json()
 
         messages = post_data.get("messages")        

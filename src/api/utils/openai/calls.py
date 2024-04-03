@@ -1,6 +1,6 @@
 import openai
 from src.api.utils.openai.config import get_openai_key
-from src.api.utils.openai.prompts import scaffold_response_response, continue_conversation_prompt
+from src.api.utils.openai.prompts import scaffold_response_prompt, continue_conversation_prompt
 
 
 def scaffold_response_call( messages, grade_level, academic_topic):
@@ -10,11 +10,12 @@ def scaffold_response_call( messages, grade_level, academic_topic):
     api_key = get_openai_key()
     openai.api_key = api_key
 
-    new_message = scaffold_response_response(messages, grade_level, academic_topic)
+    new_message = scaffold_response_prompt(messages, grade_level, academic_topic)
 
     chat_completion = openai.chat.completions.create(
         messages=messages + [new_message],
-        model="gpt-4-0125-preview",
+        model="gpt-3.5-turbo-instruct",
+        # model="gpt-4-0125-preview",
     )
 
     return chat_completion.choices[0].message.content
@@ -31,7 +32,8 @@ def continue_conversation_call(messages):
 
     chat_completion = openai.chat.completions.create(
         messages=messages + [new_message],
-        model="gpt-4-0125-preview",
+        model="gpt-3.5-turbo-instruct",
+        # model="gpt-4-0125-preview",
     )
 
     return chat_completion.choices[-1].message.content

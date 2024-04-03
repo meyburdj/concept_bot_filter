@@ -93,7 +93,7 @@ incorrect answers, or asks qualifying questions
 
 Examples of happy paths:<br> [What was the influence of World War one on World War Two?](https://chat.openai.com/share/9d3c6c2b-aa8d-4738-88ce-398f77b14841),<br> 
 [How does B influence linear equations in the real world?](https://chat.openai.com/share/7046a747-d1f8-438b-8da2-240700c35208),<br>
-7th Grade Literature
+[How does metaphor differ from simile?](https://chat.openai.com/share/5bfc7c7e-2960-4a89-be8e-73d49c8a8a9f)
 
 It also adheres to guardrails early in the conversational context, avoiding hallucinations and prompt ignoring/reprogramming.
 

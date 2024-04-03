@@ -85,7 +85,7 @@ school's policy for how teachers interact with students:
 What was the influence of World War one on World War Two?
 </student's question>
 ```
-
+###Effectiveness
 The raw chatGPT prompt handles happy conversational pathways quite well. 
 If a student asks a question rooted in fact within the teacher’s domain, the 
 bot responds as intended. This is true whether the student supplies correct answers,

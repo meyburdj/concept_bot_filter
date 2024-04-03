@@ -92,8 +92,7 @@ Algebra I<br>
 
 It also adheres to guardrails early in the conversational context, avoiding hallucinations and prompt ignoring/reprogramming.
 
-Examples of hallucination avoidance:<br>
-[“What was Abraham Lincoln’s favorite flavor of skittle?” ](https://chat.openai.com/share/ec390fa0-e93a-4e83-b461-bdc4907d291a)
+Examples of hallucination avoidance: [“What was Abraham Lincoln’s favorite flavor of skittle?” ](https://chat.openai.com/share/ec390fa0-e93a-4e83-b461-bdc4907d291a)
 
 Additionally, the prompt is good at avoiding hallucinations early in the conversational context involving questions around people–a common area for hallucinations.<br>
 Example: [What was the role of Thomas the stark in the migration of Danish vikings?](https://chat.openai.com/share/f53a902a-eb5c-48ce-8251-16ab97e86eef)
@@ -120,3 +119,5 @@ Example of prompt as raw api call with moderation guardrails moved to system pri
 
 
 To make the chatbot more deterministic, safe, and testable, the prompt has been reengineered through the NEMO-Guardrails library. 
+
+![scaffolding education bot diagram](edu_chatbot_diagram.jpg)

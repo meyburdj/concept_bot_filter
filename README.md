@@ -2,10 +2,15 @@
 
 ## Pedagological Approach
 
-AI-chatbots aimed at education must be rooted in proven pedagogy. For the sake of this project,
-I have enlisted the educatoinal strategy of scaffolding as a means of instructing a student
-who may be struggling on mastery of a concept. In both the initial chatgpt prompt, and the 
-chat filter architecture, the goal is to direct the ai responses to breakdown the question into component concepts, instruct on the first concept, assess for mastery of that concept and reinforce or continue depending on the student’s response. Other approaches, such as enlisting active
+AI-chatbots aimed at education must be rooted in proven pedagogy. For the sake of 
+this project, I have enlisted the educatoinal strategy of scaffolding as a means 
+of instructing a student who may be struggling on mastery of a concept. For 
+information on scaffolding and its impact in online education, see 
+[here](https://files.eric.ed.gov/fulltext/EJ1267049.pdf). In both the initial 
+chatgpt prompt, and the chat filter architecture, the goal is to direct the 
+ai responses to breakdown the question into component concepts, instruct on the 
+first concept, assess for mastery of that concept and reinforce or continue 
+depending on the student’s response. Other approaches, such as enlisting active
 learning, could also be used to prompt a chatbot experience that fulfills instructional
 goals, but would require an alternatively engineered prompt.
 

@@ -2,7 +2,7 @@
 
 ## Raw Prompt for ChatGPT
 
-To see the raw prompt without artificial linebreaks see https://github.com/meyburdj/concept_bot_nemo/blob/main/raw_prompt.txt
+To see the raw prompt without artificial linebreaks see [raw_prompt.txt](https://github.com/meyburdj/concept_bot_nemo/blob/main/raw_prompt.txt) 
 
 ```xml
 <context>

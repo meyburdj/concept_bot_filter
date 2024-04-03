@@ -11,11 +11,12 @@ goals, but would require an alternatively engineered prompt.
 
 ## Chatgpt Prompt
 
-I started with a single chatgpt prompt. Making use of xml, I focused on directing it to follow
+I started with a single chatgpt prompt. Making use of xml, the prompt directs the llm to follow
 the scaffolding method discussed above. An instructor making use of this prompt wold have to fill
-in their student's grade level and academic topic. In this example prompt I have used
+in their student's grade level and academic topic. This example prompt makes use of
 10th grade and World History to reinforce the tone and context for the ultimate student
-question. Input and output guardrails have been included in the prompt to maintain
+question. However, it has been tested against a wide range of grades, academic topics, 
+and associated questions. Input and output guardrails have been included in the prompt to maintain
 the integrety of the context and create a safer chatbot experience.
 
 To see the raw prompt without artificial linebreaks see [raw_prompt.txt](https://github.com/meyburdj/concept_bot_nemo/blob/main/raw_prompt.txt) 
@@ -80,7 +81,9 @@ What was the influence of World War one on World War Two?
 </student's question>
 ```
 
-The raw chatGPT prompt handles happy conversational pathways quite well. If a student asks a question rooted in fact within the teacher’s domain, the teacher responds as intended.
+The raw chatGPT prompt handles happy conversational pathways quite well. 
+If a student asks a question rooted in fact within the teacher’s domain, the 
+bot responds as intended.
 
 Examples of happy paths:
 World History
@@ -90,10 +93,10 @@ Algebra I
 It also adheres to guardrails early in the conversational context, avoiding hallucinations and prompt ignoring/reprogramming.
 
 Examples of hallucination avoidance:
-“What was Abraham Lincoln’s favorite flavor of skittle?”
+[“What was Abraham Lincoln’s favorite flavor of skittle?” ](https://chat.openai.com/share/ec390fa0-e93a-4e83-b461-bdc4907d291a)
 
 Additionally, the prompt is good at avoiding hallucinations early in the conversational context involving questions around people–a common area for hallucinations.
-Example: What was the role of Thomas the stark in the migration of Danish vikings?
+Example: [What was the role of Thomas the stark in the migration of Danish vikings?](https://chat.openai.com/share/f53a902a-eb5c-48ce-8251-16ab97e86eef)
 
 It does not comprehensively handle guardrails around adjusting or forgetting previous prompts. While it makes use of some of its guardrails, these mostly derive from its <context> and <objective> xml tags. It is not deterministic enough to avoid manipulation consistently. As the context of the conversation expands, the guardrails will largely diminish, especially those related to reprograming the initial prompt, requesting that it ignore/forget previous conversations, or changing the established <context>--in this case a teacher in a particular grade and class.
 

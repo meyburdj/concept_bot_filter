@@ -20,7 +20,7 @@ I started with a single chatgpt prompt. Making use of xml, the prompt directs th
 the scaffolding method discussed above. An instructor making use of this prompt wold have to fill
 in their student's grade level and academic topic. This example prompt makes use of
 10th grade and World History to reinforce the tone and context for the ultimate student
-question. However, it has been tested against a wide range of grades, academic topics, 
+question. It has been tested against a wide range of grades, academic topics, 
 and associated questions. Input and output guardrails have been included in the prompt to maintain
 the integrety of the context and create a safer chatbot experience.
 
@@ -88,11 +88,11 @@ What was the influence of World War one on World War Two?
 
 The raw chatGPT prompt handles happy conversational pathways quite well. 
 If a student asks a question rooted in fact within the teacher’s domain, the 
-bot responds as intended.
+bot responds as intended. This is true whether the student supplies correct answers,
+incorrect answers, or asks qualifying questions
 
-Examples of happy paths:<br>
-World History<br>
-Algebra I<br>
+Examples of happy paths: [What was the influence of World War one on World War Two?](https://chat.openai.com/share/9d3c6c2b-aa8d-4738-88ce-398f77b14841), 
+[How does B influence linear equations in the real world?](https://chat.openai.com/share/7046a747-d1f8-438b-8da2-240700c35208)
 7th Grade Literature
 
 It also adheres to guardrails early in the conversational context, avoiding hallucinations and prompt ignoring/reprogramming.

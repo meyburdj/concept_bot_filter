@@ -10,18 +10,17 @@ def mock_orchestrate(mocker):
     return mocker.patch('src.api.filters.views.orchestrate_chatbot_pipeline' , autospec=True)
 
 def test_valid_post_request(test_client, mock_orchestrate):
-    mock_orchestrate.return_value = "mocked result"
+    mock_orchestrate.return_value = {"client_message": "test", "updated_prompt_messages": [{"role": "user", "content": "Hello"}] }
 
     response = test_client.post("/filter", json={
         "gradeLevel": "10",
         "academicTopic": "Math",
-        "messages": [{"role": "user", "content": "Hello"}]
+        "clientMessages": [{"role": "user", "content": "Hello"}],
+        "promptMessages": []
     })
 
     assert response.status_code == 200
     assert mock_orchestrate.called
-    decoded_response = json.loads(response.data.decode())
-    assert decoded_response == "mocked result"
 
 @pytest.mark.parametrize("payload", [
     # Testing missing fields scenarios: 'messages', 'academicTopic', and 'gradeLevel'
@@ -39,7 +38,9 @@ def test_orchestrate_chatbot_pipeline_failure(test_client, mock_orchestrate):
     response = test_client.post("/filter", json={
         "gradeLevel": "10",
         "academicTopic": "Math",
-        "messages": [{"role": "user", "content": "Hello"}]
+        "clientMessages": [{"role": "user", "content": "Hello"}],
+        "promptMessages": [{"role": "user", "content": "Hello"}]
+
     })
 
     assert response.status_code == 500

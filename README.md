@@ -125,7 +125,7 @@ To make the chatbot more deterministic, safe, and testable, one can make a more 
 
 ![scaffolding education bot diagram](edu_chatbot_diagram.jpg)
 
-The chatbot filter in this repo aims to prototype a version of this diagram. The frontend UI is forked and heavily modified from [Chatbot UI Lite](https://github.com/meyburdj/chatbot-ui-lite). Both the backend filter and the frontend UI are hosted on railway. The chatbot can be accessed at [here](https://chatbot-ui-lite-production.up.railway.app/). 
+The chatbot filter in this repo aims to prototype a version of this diagram. The frontend UI is forked and heavily modified from [Chatbot UI Lite](https://github.com/meyburdj/chatbot-ui-lite). Both the backend filter and the frontend UI are hosted on railway. The chatbot can be accessed at [here](https://chatbot-ui-lite-production.up.railway.app/). Not all features in the diagram have been implemented in the repo, but the prompts and system prompts target the same goals.
 
 ## TODOs
 

@@ -127,6 +127,6 @@ To make the chatbot more deterministic, safe, and testable, one can make a more 
 
 The chatbot filter in this repo aims to prototype a version of this diagram. The frontend UI is forked and heavily modified from [Chatbot UI Lite](https://github.com/meyburdj/chatbot-ui-lite). Both the backend filter and the frontend UI are hosted on railway. The chatbot can be accessed at [here](https://chatbot-ui-lite-production.up.railway.app/). 
 
-## TODOS
+## TODOs
 
 The filter is setup to orchestrate dynamic LLM calls. Creating a large pool of academic topics would allow for the creation of examples that could be more catered to the particular student's question. Having knowledge bases for the different categories of topic would also allow for the use of conversational guardrails that lead the conversation more deterministically. 

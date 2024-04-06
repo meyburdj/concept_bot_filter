@@ -8,13 +8,15 @@ def orchestrate_initial_response(client_messages, grade_level, academic_topic):
     message, user prompt, and assistant prompt."""
 
     initial_message = client_messages[0]
+    is_question=is_question_call(initial_message=initial_message, 
+                                 grade_level=grade_level, academic_topic=academic_topic)
 
-    is_question=is_question_call(initial_message, grade_level, academic_topic)
 
     if(is_question):
         initial_scaffolding = initial_scaffolding_call(initial_message=initial_message, 
                                                        grade_level=grade_level, 
                                                        academic_topic=academic_topic)
+        return initial_scaffolding
         initial_question = initial_question_call(initial_scaffolding, grade_level, academic_topic)
         initial_message = initial_scaffolding + initial_question
         return initial_message
@@ -28,7 +30,7 @@ def orchestrate_chatbot_pipeline(client_messages, prompt_messages, grade_level, 
     """Orchestrates flow of data across prompts and calls."""
     
     if len(client_messages) == 1 and client_messages[0]["role"] == "user":
-        orchestrate_initial_response(client_messages=client_messages, grade_level=grade_level, academic_topic=academic_topic)
+        response = orchestrate_initial_response(client_messages=client_messages, grade_level=grade_level, academic_topic=academic_topic)
     else:
         response = continue_conversation_call(client_messages=client_messages, prompt_messages=prompt_messages)
 

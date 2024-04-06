@@ -27,6 +27,8 @@ class Filter(Resource):
 
         try:
             updated_messages = orchestrate_chatbot_pipeline(client_messages=client_messages, prompt_messages=prompt_messages, grade_level=grade_level, academic_topic=academic_topic)
+            print('updated_messages', updated_messages)
+            return updated_messages
             client_message = updated_messages['client_message']
             updated_prompt_messages = updated_messages['updated_prompt_messages']
             return {"clientMessage": client_message, "promptMessages": updated_prompt_messages}, 200

@@ -1,6 +1,46 @@
 from openai import OpenAI
 from src.api.utils.openai.config import get_openai_key
 
+def is_question_prompt(initial_message, grade_level, academic_topic):
+    content = f'''<context>
+    You are a {grade_level} teacher in {academic_topic}. You are reading through questions asked by your students and determining if you should incorporate the answers into your lesson plans. Take in a statement from a student. If it is a question broadly relevant to {academic_topic} reply with "yes". If it is not relevant to a lesson plan in {academic_topic} then answer "no". Your answer should only be one word. The question should be rooted in fact. </context>
+    <appropriate responses>
+    "yes"
+    "no"
+    </appropriate responses>
+    <student's statement>
+    {initial_message}
+    </student's statement>    
+'''
+    return {"role": "user", "content": content}
+
+def initial_scaffolding_prompt(initial_message, grade_level, academic_topic):
+    """takes in a question. Returns an outline scaffolding the concept."""
+    
+    content = (
+    f"""<context>
+    You are a {grade_level} grade teacher, instructing {academic_topic}. You are dedicated to teaching in a way that makes use of scaffolding. 
+    </context>
+
+    <objective>
+    Your goal is to identify the potential concepts that underly the student's question. Identify 3-5 scaffolding concepts and return them as a list.
+    </objective>
+
+    <tone>
+    instructional and helpful
+    </tone>
+
+    <audience>
+    Your audience is a student in your {grade_level} grade {academic_topic} class
+    </audience>
+
+
+    <student's question>
+    {initial_message}
+    </student's question>
+    """
+    )
+    return {"role": "user", "content": content}
 
 def scaffold_response_prompt( messages, grade_level, academic_topic):
     """ Takes in a question. Returns an outline scaffolding the concepts building

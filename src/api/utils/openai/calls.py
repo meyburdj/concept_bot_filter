@@ -2,8 +2,49 @@ import openai
 from src.api.utils.openai.config import get_openai_key
 from src.api.utils.openai.prompts import scaffold_response_prompt, continue_conversation_prompt, construct_system_prompt
 
+def is_question_call(message):
+    """takes in an initial user message. sends prompt determing if the initial
+    input was a question. Returns boolean depending on if question or not question """
 
-def scaffold_response_call( client_messages, prompt_messages, grade_level, academic_topic):
+    api_key = get_openai_key()
+    openai.api_key = api_key
+
+    is_question = is_question_prompt(message)
+    if is_question.lower() == 'true':
+        return True
+    else:
+        return False
+
+def initial_scaffolding_call(initial_message, grade_level, academic_topic):
+    """ Takes in a question. Generates an outline scaffolding the concepts building
+     to the concepet's answer and apends that to a list with a system prompt. 
+     Returns the raw assistant response, updates the prompt_mesages list, and 
+     returns the list"""
+    
+    api_key = get_openai_key()
+    openai.api_key = api_key
+
+    initial_scaffolding = initial_scaffolding_prompt(initial_message=initial_message, 
+                                                     grade_level=grade_level, 
+                                                     academic_topic=academic_topic)
+    
+    return initial_scaffolding
+    
+def initial_question_call(scaffolding, grade_level, academic_topic):
+    """"Takes in a user question and a scaffolded response. Produces a question 
+    related to the first concept within the scaffolding"""
+
+    api_key = get_openai_key()
+    openai.api_key = api_key
+
+    initial_question = initial_question_prompt(scaffolding=scaffolding, 
+                                                     grade_level=grade_level, 
+                                                     academic_topic=academic_topic)
+    
+    return initial_question
+
+
+def catch_all_initial_response_call( client_messages, prompt_messages, grade_level, academic_topic):
     """ Takes in a question. Generates an outline scaffolding the concepts building
      to the concepet's answer and apends that to a list with a system prompt. 
      Returns the raw assistant response, updates the prompt_mesages list, and 

@@ -51,29 +51,6 @@ def scaffold_response_prompt( messages, grade_level, academic_topic):
 
     </guardrails for teacher>
 
-    <example question>
-    What is the French influence on creole cooking
-    </example question>
-
-    <example teacher response>
-    To fully understand the influence of the French on Creole cooking, we'll explore several key concepts, each building upon the last. Here's an outline of the concepts we'll discuss:
-    <concept 1> Creole Culture and Origins: A comprehensive understanding of Creole culture, focusing on its emergence from the interaction of French, Spanish, African, and Native American influences.</concept 1>
-    <concept 2>French Colonial Influence: An examination of the French colonial era, highlighting how French policies, practices, and settlers shaped local cultures, particularly in regions like the Caribbean and Louisiana.</concept 2>
-    <concept 3>African and Native American Contributions: Insight into how African and Native American traditions have interwoven with French influences to create unique aspects of Creole culture, especially in culinary practices.<concept 3>
-    <concept 4>Culinary Fusion: A look at how Creole cuisine represents a fusion of various culinary traditions, with a specific focus on French cooking techniques, ingredients, and dishes that have been adapted and transformed within Creole cooking.</concept 4>
-    <concept 5>Creole Cooking Techniques and Ingredients: An exploration of specific cooking techniques and ingredients that are characteristic of Creole cuisine, identifying which aspects can be traced back to French culinary traditions.</concept 5>
-    <concept 6>Modern Creole Cuisine: An understanding of how Creole cuisine continues to evolve, incorporating modern influences while retaining its French-inspired roots.</concept 6>
-    First, we will discuss Creole Culture and Origins:
-    Creole culture represents a rich tapestry of influences woven together through centuries of history, marked by the intermingling of peoples from different continents. Originating primarily in colonial regions of the Americas and the Caribbean, Creole culture embodies a fusion of elements from French, Spanish, African, and Native American heritages, among others. This blending occurred as European powers colonized these areas, bringing with them enslaved Africans, interacting with indigenous populations, and in some places, incorporating a flow of migrants from other parts of the world.
-    The essence of Creole culture is its diversity and adaptability, reflecting the realities of living in close quarters among vastly different communities. In places like New Orleans, Louisiana, this cultural amalgamation is particularly evident in the architecture, language, music, and, notably, in the cuisine, which borrows spices, techniques, and ingredients from its multifaceted roots. The French influence in Creole culture is pronounced due to the significant period of French colonial rule in many of these areas, which left a lasting imprint on the social, linguistic, and culinary practices of the Creole people.
-    Question 1 Revised: Which of the following statements best captures the essence of Creole culture?
-    A) A culture that emerged from a single, homogeneous group with little external influence.
-    B) A culture that has evolved in the 21st century, incorporating modern global influences.
-    C) A culture that is characterized by the blending of French, Spanish, African, and Native American traditions, reflecting centuries of colonization, migration, and interaction between diverse groups.
-    D) A culture that primarily reflects the traditions of indigenous peoples of the Americas with minimal influence from European colonization.
-    Please select the correct option or ask any clarifying questions.
-    </example teacher response>
-
     <student's question>
     {user_content}
     </student's question>
@@ -86,3 +63,17 @@ def continue_conversation_prompt( messages):
 
     content = messages[-1]['content']
     return {"role": "user", "content": content}
+
+def construct_system_prompt(grade_level, academic_topic):
+    content = f'''You are an AI acting as a {grade_level} grade teacher 
+    specializing in {academic_topic}. Your teaching approach involves scaffolding, 
+    where you identify core concepts the student needs to understand in response 
+    to their questions. You aim to explain concepts clearly, verify understanding 
+    through multiple choice questions, and proceed based on the student's mastery 
+    of each concept. You only ever ask one question at a time. Maintain an 
+    instructional and helpful tone, targeting students of your specified grade 
+    and subject. Ensure all interactions adhere to defined 
+    guardrails, promoting a safe and respectful educational environment. Students
+    should only ask questions that are relevent to {academic_topic}
+'''
+    return {"role": "system", "content": content}

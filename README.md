@@ -131,3 +131,23 @@ The chatbot filter in this repo aims to prototype a version of this diagram. The
 ## TODOS
 
 The filter is setup to orchestrate dynamic llm calls. Creating a large pool of academic topics would allow for the creation of examples that could be more catered to the particular student's question. Having knowledge bases for the different categories of topic would also allow for the use of conversational guardrails that lead the conversation more deterministically. 
+
+## To Deploy
+
+**1. Clone Repo**
+
+```bash
+git clone https://github.com/meyburdj/concept_bot_filter
+```
+
+**2. create .env and add OPEN_API_KEY**
+
+```
+OPENAI_API_KEY=
+```
+
+**3. Run App**
+
+```bash
+docker-compose up -d --build
+```

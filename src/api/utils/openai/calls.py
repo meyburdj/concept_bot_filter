@@ -1,6 +1,6 @@
 import openai
 from src.api.utils.openai.config import get_openai_key
-from src.api.utils.openai.prompts import scaffold_response_prompt, continue_conversation_prompt, construct_system_prompt
+from src.api.utils.openai.prompts import scaffold_response_prompt, input_guardrail_prompt, continue_conversation_prompt, construct_system_prompt
 
 
 def scaffold_response_call( client_messages, prompt_messages, grade_level, academic_topic):
@@ -29,25 +29,28 @@ def scaffold_response_call( client_messages, prompt_messages, grade_level, acade
     return {'updated_prompt_messages': prompt_messages, 
             "client_message": chat_completion_content}
 
-def continue_conversation_call(client_messages, prompt_messages):
+def continue_conversation_call(client_messages, prompt_messages, grade_level, academic_topic):
     """ Continues the conversation while maintaining prompt context. Returns the 
     raw assistant response and the updated prompt messages list"""
 
     api_key = get_openai_key()
     openai.api_key = api_key
 
-    new_prompt_message = continue_conversation_prompt(client_messages)
-    prompt_messages = prompt_messages + [new_prompt_message]
-
+    new_prompt_message_no_guardrail = continue_conversation_prompt(client_messages)
+    new_prompt_message_with_guardrail = input_guardrail_prompt(client_messages=client_messages,
+                                                               grade_level=grade_level, academic_topic=academic_topic)
+    prompt_messages_with_guardrail = prompt_messages + [new_prompt_message_with_guardrail]
+    print('prompt_messages_with_guardrail', prompt_messages_with_guardrail)
+    prompt_messages_no_guardrail = prompt_messages + [new_prompt_message_no_guardrail]
     chat_completion = openai.chat.completions.create(
-        messages=prompt_messages,
+        messages=prompt_messages_with_guardrail,
         model="gpt-3.5-turbo",
         # model="gpt-4-0125-preview",
     )
 
     chat_completion_content = chat_completion.choices[-1].message.content
     prompt_message_object = {"role": "assistant", "content": chat_completion_content}
-    prompt_messages = prompt_messages + [prompt_message_object]
+    prompt_messages = prompt_messages_no_guardrail + [prompt_message_object]
 
     return {'updated_prompt_messages': prompt_messages, 
             "client_message": chat_completion_content}

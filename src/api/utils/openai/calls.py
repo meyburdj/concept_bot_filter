@@ -18,8 +18,8 @@ def scaffold_response_call( client_messages, prompt_messages, grade_level, acade
     
     chat_completion = openai.chat.completions.create(
         messages=prompt_messages,
-        # model="gpt-3.5-turbo",
-        model="gpt-4-0125-preview",
+        model="gpt-3.5-turbo",
+        # model="gpt-4-0125-preview",
     )
 
     chat_completion_content = chat_completion.choices[-1].message.content
